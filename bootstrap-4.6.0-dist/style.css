@@ -1,0 +1,20 @@
+.sidebar{
+    background-color: rgb(54, 50, 50);
+    height: 100vh;
+    position: fixed;
+    z-index: 1;
+    color: white;
+    max-height: fit-content;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    
+    
+}
+.main-content{
+    margin-left: 230px;
+}
+.sidebar a{
+    color:white;
+    text-decoration: none;
+}
