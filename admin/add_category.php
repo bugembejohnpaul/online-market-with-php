@@ -10,7 +10,7 @@ if(isset($_POST['add_category'])){
         $result_category = mysqli_query($conn,$insert_category);
         if($result_category){
         
-            echo count($row)."<script>alert('Hi, Category inserted into the data base.')</script>";
+            echo"<script>alert('Hi, Category inserted into the data base.')</script>";
         }
     }
     

@@ -54,124 +54,77 @@ include('./connection.php');
         </div>
         <div class="row">
             <div class="col-lg-10">
-            <div class="row mt-4">
-            <div class="col-lg-4">
-                <div class="card">
-                    <img class="card-img-top" src="./images/mush2.jpg" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Mushroom Soup Powder</h4>
-                        <p class="card-text">Now we have Mushroom Soup Powder</p>
-                        <a href="" class="btn btn-primary ">Add to Cart</a>
-                        <a href="" class="btn btn-secondary">View more</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <img class="card-img-top" src="./images/mush8.jpg" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Mushroom Biscuit</h4>
-                        <p class="card-text">We also have Mushroom Biscuit</p>
-                        <a href="" class="btn btn-primary ">Add to Cart</a>
-                        <a href="" class="btn btn-secondary">View more</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <img class="card-img-top" src="./images/mushroom1.png" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Mushroom Chips</h4>
-                        <p class="card-text">This about Mushroom Chips</p>
-                        <a href="" class="btn btn-primary ">Add to Cart</a>
-                        <a href="" class="btn btn-secondary">View more</a>
-                    </div>
-                </div>
-            </div>
-        
+                <div class="row">
+                    <?php
+                        $select_products ="select * from products order by rand() LIMIT 0,3";
+                        $results = mysqli_query($conn,$select_products);
+                        while($row=mysqli_fetch_array($results)){
+                            $product_title = $row['product_title'];
+                            $product_description = $row['product_description'];
+                            $product_image1 = $row['product_image1'];
+                            $product_price = $row['product_price'];
+                            $product_brand = $row['product_id'];
+                            $product_category = $row['category_id'];
+                            echo "<div class='col-lg-4'>
+                            <div class='card my-2'>
+                                <img class='card-img-top' src='./admin/products_images/$product_image1' alt='$product_title'>
+                                <div class='card-body'>
+                                    <h4 class='card-title'>$product_title</h4>
+                                    <p class='card-text'>$product_description</p>
+                                    <a href='' class='btn btn-primary'>Add to Cart</a>
+                                    <a href='' class='btn btn-secondary'>View more</a>
+                                </div>
+                            </div>
+                        </div>";
 
-        </div>
-        <!-- Another product row -->
-        <div class="row mt-4">
-            <div class="col-lg-4">
-                <div class="card">
-                    <img class="card-img-top" src="./images/mush3.jpg" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Mushroom raw Product</h4>
-                        <p class="card-text">Now we have Mushroom raw product</p>
-                        <a href="" class="btn btn-primary ">Add to Cart</a>
-                        <a href="" class="btn btn-secondary">View more</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <img class="card-img-top" src="./images/mush juice.jpg" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Mushroom Juice</h4>
-                        <p class="card-text">We also have Mushroom Juice</p>
-                        <a href="" class="btn btn-primary ">Add to Cart</a>
-                        <a href="" class="btn btn-secondary">View more</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <img class="card-img-top" src="./images/mush immunity.jpg" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Mushroom Immunity</h4>
-                        <p class="card-text">This about Mushroom Immunity</p>
-                        <a href="" class="btn btn-primary ">Add to Cart</a>
-                        <a href="" class="btn btn-secondary">View more</a>
-                    </div>
-                </div>
-            </div>
-        
+                    }
 
-        </div>
+                    ?>
+                </div>
             </div>
             <div class="col-lg-2 bg-light">
                
-                <div class="brands bg-primary ">
-                <h4 class="p-1">Brands</h4>
-                </div>
-                <div class="navbar text-info">
-                    
-                    <ul class="navbar-nav me-auto ">
-                    <?php
-                        $brands = "select * from brands";
-                        $results = mysqli_query($conn,$brands);
-                        while($row = mysqli_fetch_array($results)){
-                            $id = $row['id'];
-                            $brand_title = $row['brand_title'];
-                            echo "<li class='nav-link'><a href=''>$brand_title</a></li>";
-                        }
+               <div class="brands bg-primary ">
+               <h4 class="p-1">Brands</h4>
+               </div>
+               <div class="navbar text-info">
+                   
+                   <ul class="navbar-nav me-auto ">
+                   <?php
+                       $brands = "select * from brands";
+                       $results = mysqli_query($conn,$brands);
+                       while($row = mysqli_fetch_array($results)){
+                           $id = $row['brand_id'];
+                           $brand_title = $row['brand_title'];
+                           echo "<li class='nav-link'><a href=''>$brand_title</a></li>";
+                       }
 
-                    ?>
-                    </ul>
-                </div>
-                <div class="categories bg-primary ">
-                <h4 class="p-1">Categories</h4>
-                </div>
-                <div class="navbar text-info">
-                    
-                    <ul class="navbar-nav me-auto ">
-                    <?php
-                        $categories = "select * from categories";
-                        $results = mysqli_query($conn,$categories);
-                        while($row = mysqli_fetch_array($results)){
-                            $id = $row['id'];
-                            $category_title = $row['category_title'];
-                            echo "<li class='nav-link'><a href=''>$category_title</a></li>";
-                        }
+                   ?>
+                   </ul>
+               </div>
+               <div class="categories bg-primary ">
+               <h4 class="p-1">Categories</h4>
+               </div>
+               <div class="navbar text-info">
+                   
+                   <ul class="navbar-nav me-auto ">
+                   <?php
+                       $categories = "select * from categories";
+                       $results = mysqli_query($conn,$categories);
+                       while($row = mysqli_fetch_array($results)){
+                           $id = $row['category_id'];
+                           $category_title = $row['category_title'];
+                           echo "<li class='nav-link'><a href=''>$category_title</a></li>";
+                       }
 
-                    ?>
-                    </ul>
-                </div>
-
-
-
-            </div>
+                   ?>
+                   </ul>
+               </div>
+           </div>
+        
+        </div>
+       
+            
         </div>
         
       </div>

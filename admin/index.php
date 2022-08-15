@@ -18,7 +18,7 @@
 </head>
 <body>
     
-    <div class="row">
+    <div class="row ">
         <!-- Sidebar -->
         <div class="col-lg-2 sidebar shadow bg-light p-1">
             <img src="../images/logo.png" alt="" height="90px" style="margin-left: 25%" class="p-2">
