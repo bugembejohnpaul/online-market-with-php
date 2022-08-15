@@ -55,15 +55,18 @@ include('./functions/common_functions.php');
             <h2>Welcome to the online Shop.</h2>
         </div>
         <div class="row">
+            
             <div class="col-lg-10">
+            <h1 class="text-center text-info">Product Details</h1>
                 <div class="row">
+                    
+                    
                     <?php
                     global $conn;
-                    search_products();
+                    view_product_details();
                     get_unique_categories();
                     get_unique_brands();
-                    
-
+                  
                     ?>
                 </div>
             </div>
@@ -78,7 +81,6 @@ include('./functions/common_functions.php');
                    <?php
                    global $conn;
                    get_brands();
-                    
                    ?>
                    </ul>
                </div>
@@ -91,8 +93,6 @@ include('./functions/common_functions.php');
                    <?php
                    global $conn;
                    get_categories();
-                    
-
                    ?>
                    </ul>
                </div>

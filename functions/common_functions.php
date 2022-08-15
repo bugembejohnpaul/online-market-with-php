@@ -8,6 +8,7 @@ function get_products(){
             $select_products ="select * from products order by rand() LIMIT 0,3";
             $results = mysqli_query($conn,$select_products);
             while($row=mysqli_fetch_array($results)){
+                $product_id= $row['product_id'];
                 $product_title = $row['product_title'];
                 $product_description = $row['product_description'];
                 $product_image1 = $row['product_image1'];
@@ -21,7 +22,7 @@ function get_products(){
                         <h4 class='card-title'>$product_title</h4>
                         <p class='card-text'>$product_description</p>
                         <a href='' class='btn btn-primary'>Add to Cart</a>
-                        <a href='' class='btn btn-secondary'>View more</a>
+                        <a href='product_details.php?product_id=$product_id' class='btn btn-secondary'>View more</a>
                     </div>
                 </div>
             </div>";
@@ -41,6 +42,7 @@ function get_unique_categories(){
             echo"<h2 class='text-danger m-5'>Products of this category is Out of Stock.</h2>";
         }
         while($row=mysqli_fetch_array($results)){
+            $product_id= $row['product_id'];
             $product_title = $row['product_title'];
             $product_description = $row['product_description'];
             $product_image1 = $row['product_image1'];
@@ -54,7 +56,7 @@ function get_unique_categories(){
                     <h4 class='card-title'>$product_title</h4>
                     <p class='card-text'>$product_description</p>
                     <a href='' class='btn btn-primary'>Add to Cart</a>
-                    <a href='' class='btn btn-secondary'>View more</a>
+                    <a href='product_details.php?product_id=$product_id' class='btn btn-secondary'>View more</a>
                 </div>
             </div>
         </div>";
@@ -74,6 +76,7 @@ function get_unique_brands(){
             echo"<h2 class='text-danger m-5'>Products of this Brand is Out of Stock.</h2>";
         }
         while($row=mysqli_fetch_array($results)){
+            $product_id= $row['product_id'];
             $product_title = $row['product_title'];
             $product_description = $row['product_description'];
             $product_image1 = $row['product_image1'];
@@ -87,7 +90,7 @@ function get_unique_brands(){
                     <h4 class='card-title'>$product_title</h4>
                     <p class='card-text'>$product_description</p>
                     <a href='' class='btn btn-primary'>Add to Cart</a>
-                    <a href='' class='btn btn-secondary'>View more</a>
+                    <a href='product_details.php?product_id=$product_id' class='btn btn-secondary'>View more</a>
                 </div>
             </div>
         </div>";
@@ -126,6 +129,7 @@ function search_products(){
         $search_products ="select * from products where product_keywords like '%$key_word%' ";
         $results = mysqli_query($conn,$search_products);
         while($row=mysqli_fetch_array($results)){
+            $product_id = $row['product_id'];
             $product_title = $row['product_title'];
             $product_description = $row['product_description'];
             $product_image1 = $row['product_image1'];
@@ -139,12 +143,54 @@ function search_products(){
                     <h4 class='card-title'>$product_title</h4>
                     <p class='card-text'>$product_description</p>
                     <a href='' class='btn btn-primary'>Add to Cart</a>
-                    <a href='' class='btn btn-secondary'>View more</a>
+                    <a href='product_details.php?product_id=$product_id' class='btn btn-secondary'>View more</a>
                 </div>
             </div>
         </div>";
         }
     }
 }
-
+// Viewing products details................
+function view_product_details(){
+    global $conn;
+    if(!(isset($_GET['category']))){
+        if(!(isset($_GET['brand']))){
+            $product_id =$_GET['product_id'];
+            $select_products ="select * from products where product_id=$product_id";
+            $results = mysqli_query($conn,$select_products);
+            while($row=mysqli_fetch_array($results)){
+                $product_id= $row['product_id'];
+                $product_title = $row['product_title'];
+                $product_description = $row['product_description'];
+                $product_image1 = $row['product_image1'];
+                $product_image2 = $row['product_image2'];
+                $product_image3 = $row['product_image3'];
+                $product_price = $row['product_price'];
+                $product_brand = $row['product_id'];
+                $product_category = $row['category_id'];
+                echo "<div class='col-lg-4'>
+                <div class='card my-2'>
+                    <img class='card-img-top' src='./admin/products_images/$product_image1' alt='$product_title'>
+                    <div class='card-body'>
+                        <h4 class='card-title'>$product_title</h4>
+                        <p class='card-text'>$product_description</p>
+                        <a href='' class='btn btn-primary'>Add to Cart</a>
+                        
+                    </div>
+                </div>
+            </div>";
+            echo "<div class='col-lg-4'>
+                <div class=' my-4'>
+                    <img class='card-img-top' src='./admin/products_images/$product_image2' alt='$product_title' height='250px'>
+                </div>
+            </div>";
+            echo "<div class='col-lg-4'>
+                <div class=' my-4'>
+                    <img class='card-img-top' src='./admin/products_images/$product_image3' alt='$product_title'  height='250px'>
+                </div>
+            </div>";
+            }
+        }
+    }
+}
 ?>
