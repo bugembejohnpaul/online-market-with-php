@@ -22,7 +22,8 @@
         <!-- Sidebar -->
         <div class="col-lg-2 sidebar shadow bg-light p-1">
             <img src="../images/logo.png" alt="" height="90px" style="margin-left: 25%" class="p-2">
-            <a href="../index.php">  
+            <h5 class="text-center p-1">Admin Panel</h5>
+            <a href="index.php?home">  
             <div class="home my-1">
             <button type="submit" name="home" class="form-control">
                 <i class="fa fa-home" aria-hidden="true"></i>
@@ -30,9 +31,9 @@
             </button>
             </div>
             </a>
-            <a href="index.php?home">
+            <a href="../index.php">
             <div class="brand my-1">
-                <button type="submit" name="home" class="form-control">Dashboard</button>  
+                <button type="submit" name="home" class="form-control">View site</button>  
             </div>
             </a>
             <a href="index.php?add_brand">
@@ -60,8 +61,8 @@
         <!-- End of Sidebar -->
         <!-- Main Content -->
         <div class="col-lg-10 main-content">
-            <div class="title bg-light m-3 p-2">
-            <h1 class="text-center">Welcome, Manage products</h1>
+            <div class="title bg-light m-1 p-2">
+            <h1 class="text-center">Admin, Manage products</h1>
             </div>
                 
             <!-- Including dash board..... -->

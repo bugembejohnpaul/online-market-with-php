@@ -1,5 +1,6 @@
 <?php
-include('./connection.php');
+include('connection.php');
+include('./functions/common_functions.php');
 ?>
 
 <!doctype html>
@@ -29,10 +30,10 @@ include('./connection.php');
             <div class="collapse navbar-collapse align-items-center" style="margin-left: 30%;" id="collapsibleNavId">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="admin/index.php?home"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-link">
-                        <a href="">Products</a>
+                        <a href="index.php">Products</a>
                     </li>
                     <li class="nav-link">
                         <a href="">Register</a>
@@ -56,28 +57,32 @@ include('./connection.php');
             <div class="col-lg-10">
                 <div class="row">
                     <?php
-                        $select_products ="select * from products order by rand() LIMIT 0,3";
-                        $results = mysqli_query($conn,$select_products);
-                        while($row=mysqli_fetch_array($results)){
-                            $product_title = $row['product_title'];
-                            $product_description = $row['product_description'];
-                            $product_image1 = $row['product_image1'];
-                            $product_price = $row['product_price'];
-                            $product_brand = $row['product_id'];
-                            $product_category = $row['category_id'];
-                            echo "<div class='col-lg-4'>
-                            <div class='card my-2'>
-                                <img class='card-img-top' src='./admin/products_images/$product_image1' alt='$product_title'>
-                                <div class='card-body'>
-                                    <h4 class='card-title'>$product_title</h4>
-                                    <p class='card-text'>$product_description</p>
-                                    <a href='' class='btn btn-primary'>Add to Cart</a>
-                                    <a href='' class='btn btn-secondary'>View more</a>
-                                </div>
-                            </div>
-                        </div>";
+                    global $conn;
+                    get_products();
+                    get_unique_categories();
+                    get_unique_brands();
+                    //     $select_products ="select * from products order by rand() LIMIT 0,3";
+                    //     $results = mysqli_query($conn,$select_products);
+                    //     while($row=mysqli_fetch_array($results)){
+                    //         $product_title = $row['product_title'];
+                    //         $product_description = $row['product_description'];
+                    //         $product_image1 = $row['product_image1'];
+                    //         $product_price = $row['product_price'];
+                    //         $product_brand = $row['product_id'];
+                    //         $product_category = $row['category_id'];
+                    //         echo "<div class='col-lg-4'>
+                    //         <div class='card my-2'>
+                    //             <img class='card-img-top' src='./admin/products_images/$product_image1' alt='$product_title'>
+                    //             <div class='card-body'>
+                    //                 <h4 class='card-title'>$product_title</h4>
+                    //                 <p class='card-text'>$product_description</p>
+                    //                 <a href='' class='btn btn-primary'>Add to Cart</a>
+                    //                 <a href='' class='btn btn-secondary'>View more</a>
+                    //             </div>
+                    //         </div>
+                    //     </div>";
 
-                    }
+                    // }
 
                     ?>
                 </div>
@@ -91,13 +96,15 @@ include('./connection.php');
                    
                    <ul class="navbar-nav me-auto ">
                    <?php
-                       $brands = "select * from brands";
-                       $results = mysqli_query($conn,$brands);
-                       while($row = mysqli_fetch_array($results)){
-                           $id = $row['brand_id'];
-                           $brand_title = $row['brand_title'];
-                           echo "<li class='nav-link'><a href=''>$brand_title</a></li>";
-                       }
+                   global $conn;
+                   get_brands();
+                    //    $brands = "select * from brands";
+                    //    $results = mysqli_query($conn,$brands);
+                    //    while($row = mysqli_fetch_array($results)){
+                    //        $id = $row['brand_id'];
+                    //        $brand_title = $row['brand_title'];
+                    //        echo "<li class='nav-link'><a href=''>$brand_title</a></li>";
+                    //    }
 
                    ?>
                    </ul>
@@ -109,13 +116,15 @@ include('./connection.php');
                    
                    <ul class="navbar-nav me-auto ">
                    <?php
-                       $categories = "select * from categories";
-                       $results = mysqli_query($conn,$categories);
-                       while($row = mysqli_fetch_array($results)){
-                           $id = $row['category_id'];
-                           $category_title = $row['category_title'];
-                           echo "<li class='nav-link'><a href=''>$category_title</a></li>";
-                       }
+                   global $conn;
+                   get_categories();
+                    //    $categories = "select * from categories";
+                    //    $results = mysqli_query($conn,$categories);
+                    //    while($row = mysqli_fetch_array($results)){
+                    //        $id = $row['category_id'];
+                    //        $category_title = $row['category_title'];
+                    //        echo "<li class='nav-link'><a href='$id'>$category_title</a></li>";
+                    //    }
 
                    ?>
                    </ul>
