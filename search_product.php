@@ -59,7 +59,7 @@ include('./functions/common_functions.php');
                 <div class="row">
                     <?php
                     global $conn;
-                    get_products();
+                    search_products();
                     get_unique_categories();
                     get_unique_brands();
                     //     $select_products ="select * from products order by rand() LIMIT 0,3";

@@ -118,5 +118,33 @@ function get_categories(){
     }
 
 }
+// Function to get Products.................This reduces the code in index file.......
+function search_products(){
+    global $conn;
+    if(isset($_GET['search_products'])){
+        $key_word = $_GET['search_data'];
+        $search_products ="select * from products where product_keywords like '%$key_word%' ";
+        $results = mysqli_query($conn,$search_products);
+        while($row=mysqli_fetch_array($results)){
+            $product_title = $row['product_title'];
+            $product_description = $row['product_description'];
+            $product_image1 = $row['product_image1'];
+            $product_price = $row['product_price'];
+            $product_brand = $row['product_id'];
+            $product_category = $row['category_id'];
+            echo "<div class='col-lg-4'>
+            <div class='card my-2'>
+                <img class='card-img-top' src='./admin/products_images/$product_image1' alt='$product_title'>
+                <div class='card-body'>
+                    <h4 class='card-title'>$product_title</h4>
+                    <p class='card-text'>$product_description</p>
+                    <a href='' class='btn btn-primary'>Add to Cart</a>
+                    <a href='' class='btn btn-secondary'>View more</a>
+                </div>
+            </div>
+        </div>";
+        }
+    }
+}
 
 ?>
