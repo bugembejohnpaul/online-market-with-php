@@ -6,7 +6,7 @@ include('./functions/common_functions.php');
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Mushroom Market</title>
+    <title>Online Market</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,7 +19,7 @@ include('./functions/common_functions.php');
 </head>
   <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">
                 <img src="./images/logo.png" alt="" height="40px">
             </a>
@@ -27,19 +27,24 @@ include('./functions/common_functions.php');
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse align-items-center" style="margin-left: 30%;" id="collapsibleNavId">
+            <div class="collapse navbar-collapse align-items-center" style="margin-left: 20%;" id="collapsibleNavId">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
                         <a class="nav-link" href="admin/index.php?home"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-link">
-                        <a href="index.php">Products</a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="">Register</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">View Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-cart-plus" aria-hidden="true"></i> Cart</a>
+                        <a class="nav-link" href="">Login/Register</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="view_cart.php"><i class="fa fa-cart-plus" aria-hidden="true"></i> Cart = <?php count_cart_items();?></a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Accessing Total Price of products in Cart.. -->
+                        <a class="nav-link" href="">Total Price: Shs.<?php getting_total_price(); ?></a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0" action="search_product.php" method="get">
@@ -49,9 +54,10 @@ include('./functions/common_functions.php');
                 </form>
             </div>
         </nav>
+        
     </header>
       <div class="container-fluid p-1">
-        <div class="title  text-light text-center p-2" style="background-image: linear-gradient(white, blue);">
+        <div class="title  text-light text-center p-2" style="background-image: linear-gradient(white, lightblue);">
             <h2>Welcome to the online Shop.</h2>
         </div>
         <div class="row">
@@ -60,30 +66,16 @@ include('./functions/common_functions.php');
                     <?php
                     global $conn;
                     get_products();
-                    get_unique_categories();
-                    get_unique_brands();
-                    //     $select_products ="select * from products order by rand() LIMIT 0,3";
-                    //     $results = mysqli_query($conn,$select_products);
-                    //     while($row=mysqli_fetch_array($results)){
-                    //         $product_title = $row['product_title'];
-                    //         $product_description = $row['product_description'];
-                    //         $product_image1 = $row['product_image1'];
-                    //         $product_price = $row['product_price'];
-                    //         $product_brand = $row['product_id'];
-                    //         $product_category = $row['category_id'];
-                    //         echo "<div class='col-lg-4'>
-                    //         <div class='card my-2'>
-                    //             <img class='card-img-top' src='./admin/products_images/$product_image1' alt='$product_title'>
-                    //             <div class='card-body'>
-                    //                 <h4 class='card-title'>$product_title</h4>
-                    //                 <p class='card-text'>$product_description</p>
-                    //                 <a href='' class='btn btn-primary'>Add to Cart</a>
-                    //                 <a href='' class='btn btn-secondary'>View more</a>
-                    //             </div>
-                    //         </div>
-                    //     </div>";
+                    // Adding to cart.........
+                    add_to_cart();
 
-                    // }
+                    // Getting Unique Categories..........
+                    get_unique_categories();
+                    // Getting Unique Brands..........
+                    get_unique_brands();
+
+
+                    
 
                     ?>
                 </div>
@@ -99,14 +91,7 @@ include('./functions/common_functions.php');
                    <?php
                    global $conn;
                    get_brands();
-                    //    $brands = "select * from brands";
-                    //    $results = mysqli_query($conn,$brands);
-                    //    while($row = mysqli_fetch_array($results)){
-                    //        $id = $row['brand_id'];
-                    //        $brand_title = $row['brand_title'];
-                    //        echo "<li class='nav-link'><a href=''>$brand_title</a></li>";
-                    //    }
-
+                    
                    ?>
                    </ul>
                </div>
@@ -119,13 +104,7 @@ include('./functions/common_functions.php');
                    <?php
                    global $conn;
                    get_categories();
-                    //    $categories = "select * from categories";
-                    //    $results = mysqli_query($conn,$categories);
-                    //    while($row = mysqli_fetch_array($results)){
-                    //        $id = $row['category_id'];
-                    //        $category_title = $row['category_title'];
-                    //        echo "<li class='nav-link'><a href='$id'>$category_title</a></li>";
-                    //    }
+                    
 
                    ?>
                    </ul>
@@ -138,7 +117,7 @@ include('./functions/common_functions.php');
         </div>
         
       </div>
-      <div class="footer text-center text-light p-3" style="background-image: linear-gradient(white, blue);">
+      <div class="footer text-center text-light p-3" style="background-image: linear-gradient(white, lightblue);">
         &copy;bjp quality mushrooms Uganda
       </div>
 

@@ -6,7 +6,7 @@ include('./functions/common_functions.php');
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Mushroom Market</title>
+    <title>Online Market</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,7 +27,7 @@ include('./functions/common_functions.php');
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse align-items-center" style="margin-left: 30%;" id="collapsibleNavId">
+            <div class="collapse navbar-collapse align-items-center" style="margin-left: 20%;" id="collapsibleNavId">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
                         <a class="nav-link" href="admin/index.php?home"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
@@ -39,7 +39,11 @@ include('./functions/common_functions.php');
                         <a href="">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-cart-plus" aria-hidden="true"></i> Cart</a>
+                        <a class="nav-link" href="view_cart.php"><i class="fa fa-cart-plus" aria-hidden="true"></i> Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Accessing Total Price of products in Cart.. -->
+                        <a class="nav-link" href="">Total Price: Shs.<?php getting_total_price(); ?></a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0" action="search_product.php" method="get">
@@ -51,7 +55,7 @@ include('./functions/common_functions.php');
         </nav>
     </header>
       <div class="container-fluid p-1">
-        <div class="title  text-light text-center p-2" style="background-image: linear-gradient(white, blue);">
+        <div class="title  text-light text-center p-2" style="background-image: linear-gradient(white, lightblue);">
             <h2>Welcome to the online Shop.</h2>
         </div>
         <div class="row">
@@ -104,7 +108,7 @@ include('./functions/common_functions.php');
         </div>
         
       </div>
-      <div class="footer text-center text-light p-3" style="background-image: linear-gradient(white, blue);">
+      <div class="footer text-center text-light p-3" style="background-image: linear-gradient(white, lightblue);">
         &copy;bjp quality mushrooms Uganda
       </div>
 
