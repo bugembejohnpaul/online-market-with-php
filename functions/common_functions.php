@@ -245,7 +245,7 @@ function add_to_cart(){
             echo"<script>alert('Sorry, this product is Already in cart.')</script>";
             echo "<script>window.open('index.php','_self')</script>";
         }else{
-            $insert = "insert into cart_details(product_id,ip_address,quantity) values('$get_cart_product_id','$get_ip_address',0)";
+            $insert = "insert into cart_details(product_id,ip_address,quantity) values('$get_cart_product_id','$get_ip_address',1)";
             $insert_results= mysqli_query($conn,$insert);
             if($insert_results){
                 echo"<script>alert('This product is Added to cart, Thanks.')</script>";
